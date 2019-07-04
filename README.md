@@ -40,8 +40,6 @@ Caso prefira se conectar no postgresql via terminal execute o comando: **docker 
 
  - Após criar a tabela **documento**  executar o  comando **docker restart ms-docentes** em uma nova aba
 
- **O passo acima não interfere na execução do sistema, somente nas funcionalidades de CRUD do MS-Docentes**
-
  #Informações:
  - Dentro da pasta do projeto existe uma imagem que representa o mapeamento das portas TCP do projeto
  - A collection: **SGE-IFSP.postman_collection.json** foi desenvolvida para ser importada na ferramenta Postman para realizar chamadas nos serviços REST, caso deseje.
