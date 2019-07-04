@@ -26,6 +26,8 @@ Esses passos são necessários para que o Docker não precise ser executado como
  6 - Navegar até o diretório **sgefront** e executar o seguinte comando: **ng serve** (Comando responsável por compilar e subir o front-end)
  
  7 - Acessar o front-end através da URL: http://localhost:4200/ (Obs: Para visualizar as informações no dashboard deve ser gerado pelo menos um contrato)
+ 
+ **IMPORTANTE**: Na tela de contrato a data inicial e data final deve ser informada no formato: **aaaa/mm/dd**
 
 
  #Informações:
