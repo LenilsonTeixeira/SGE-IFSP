@@ -49,5 +49,8 @@ Esses passos são necessários para que o Docker não precise ser executado como
  As classes responsáveis por produzir a mensagem para o Apache Kafka no MS-Contratos está localizada no pacote: **com.ifsp.edu.hto.sge.contratos.event**
 
  No microsserviço ms-relatorios as classes responsáveis por consumir a mensagem estão localizadas no diretório: com.ifsp.edu.hto.sge.relatorios.service, especificamente no KafkaReceiver.java
+ 
+ 
+ Obs: No arquivo **docker-compose.yml** localizado no diretório **sge-docker-platform** contem todas as informações refente as credenciais de acesso(usuário, senha, porta) dos componentes do sistema. Exemplo: Para acessar o banco de dados(mysql) do ms-contratos basta digitar o seguinte comando: **docker exec -it mysql mysql -psgeifsp** ou se desejar de conectar via interface gráfica do Mysql Workbench basta inserir a url como localhost e a porta 3306 com a senha sgeifsp conforme apresentada no arquivo do docker-compose.yml
 
  
