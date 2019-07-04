@@ -27,18 +27,6 @@ Esses passos são necessários para que o Docker não precise ser executado como
  
  7 - Acessar o front-end através da URL: http://localhost:4200/ (Obs: Para visualizar as informações no dashboard deve ser gerado pelo menos um contrato)
 
-8 - O microsserviço MS-DOCUMENTOS cria automaticamente o banco porém não cria automaticamente a tabela no banco de dados POSTGRES, portanto deve seguir o seguinte procedimento:
-Caso prefira se conectar no postgresql via terminal execute o comando: **docker exec -it postgres bash** 
- - **psql -d ms_documentos -U  sgeadmin -W** inserindo a senha: **sgeadmin**
- -Executar o script para criar a tabela documento:
- CREATE TABLE documento(id serial PRIMARY KEY, sigla VARCHAR(4) UNIQUE NOT NULL, nome VARCHAR(100) UNIQUE NOT NULL, copias integer)
- 
- ------------------------------------------------------------------------------------------------------------------
- - Caso deseje acessar o Postgres através do PGAdmin acesse o link: http://localhost:15432/login
- Login: **user@domain.com**
- Senha: **admin**
-
- - Após criar a tabela **documento**  executar o  comando **docker restart ms-docentes** em uma nova aba
 
  #Informações:
  - Dentro da pasta do projeto existe uma imagem que representa o mapeamento das portas TCP do projeto
@@ -54,6 +42,11 @@ Caso prefira se conectar no postgresql via terminal execute o comando: **docker 
  As classes responsáveis por produzir a mensagem para o Apache Kafka no MS-Contratos está localizada no pacote: **com.ifsp.edu.hto.sge.contratos.event**
 
  No microsserviço ms-relatorios as classes responsáveis por consumir a mensagem estão localizadas no diretório: com.ifsp.edu.hto.sge.relatorios.service, especificamente no KafkaReceiver.java
+ 
+  ------------------------------------------------------------------------------------------------------------------
+ - Caso deseje acessar o Postgres através do PGAdmin acesse o link: http://localhost:15432/login
+ Login: **user@domain.com**
+ Senha: **admin**
  
  
  Obs: No arquivo **docker-compose.yml** localizado no diretório **sge-docker-platform** contem todas as informações refente as credenciais de acesso(usuário, senha, porta) dos componentes do sistema. Exemplo: Para acessar o banco de dados(mysql) do ms-contratos basta digitar o seguinte comando: **docker exec -it mysql mysql -psgeifsp** ou se desejar de conectar via interface gráfica do Mysql Workbench basta inserir a url como localhost e a porta 3306 com a senha sgeifsp conforme apresentada no arquivo do docker-compose.yml
