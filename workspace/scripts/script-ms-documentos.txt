@@ -1,0 +1,12 @@
+CREATE TABLE documento
+(
+    id serial PRIMARY KEY,
+    sigla VARCHAR(4) NOT NULL,
+    nome  VARCHAR(200) NOT NULL UNIQUE,
+    copias integer
+)
+
+
+
+
+

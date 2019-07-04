@@ -1,0 +1,546 @@
+{
+	"info": {
+		"_postman_id": "02f8b146-7548-474c-80b3-9d6e873462cb",
+		"name": "SGE-IFSP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Documentos",
+			"item": [
+				{
+					"name": "localhost:8085/ms-documentos/v1/documentos/0/10",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8085/ms-documentos/v1/documentos/0/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"ms-documentos",
+								"v1",
+								"documentos",
+								"0",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8085/ms-documentos/v1/documentos/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sigla\":\"CPF\",\n\t\"nome\":\"Cadastro de Pessoa Física\",\n\t\"copias\":2\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8085/ms-documentos/v1/documentos/",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"ms-documentos",
+								"v1",
+								"documentos",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cursos",
+			"item": [
+				{
+					"name": "localhost:8080/ms-contratos/v1/cursos/0/10",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/ms-contratos/v1/cursos/0/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ms-contratos",
+								"v1",
+								"cursos",
+								"0",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/ms-contratos/v1/cursos/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sigla\":\"ADS\",\n\t\"nome\":\"Análise e Desenvolvimento de Sistemas\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/ms-contratos/v1/cursos/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ms-contratos",
+								"v1",
+								"cursos",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empresas",
+			"item": [
+				{
+					"name": "localhost:8080/ms-contratos/v1/empresas/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"codigo\":1010,\n\t\"cnpj\":\"46.068.425/0001-33\",\n\t\"nome\":\"Universidade Estadual de Campinas - Unicamp\",\n\t\"email\":\"eduardo.rigato@unicamp.com\",\n\t\"telefone\":\"1932833329\"\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/ms-contratos/v1/empresas/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ms-contratos",
+								"v1",
+								"empresas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/ms-contratos/v1/empresas/0/10",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"codigo\":1010,\n\t\"cnpj\":\"46.068.425/0001-33\",\n\t\"nome\":\"Universidade Estadual de Campinas - Unicamp\",\n\t\"email\":\"eduardo.rigato@unicamp.com\",\n\t\"telefone\":\"1932833329\"\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/ms-contratos/v1/empresas/0/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ms-contratos",
+								"v1",
+								"empresas",
+								"0",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Alunos",
+			"item": [
+				{
+					"name": "localhost:8080/ms-contratos/v1/alunos/0/10",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"Lenilson Teixeira Salvino\",\n\t\"email\":\"lenilsonts@gmail.com\",\n\t\"telefone\":\"19981187565\",\n\t\"prontuario\":\"A1420411\",\n\t\"curso\":{\n\t\t\"id\": 1,\n         \"sigla\": \"ADS\",\n         \"nome\": \"Análise e Desenvolvimento de Sistemas\"\n\t}\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/ms-contratos/v1/alunos/0/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ms-contratos",
+								"v1",
+								"alunos",
+								"0",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/ms-contratos/v1/alunos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"Guilherme Ricardo\",\n\t\"email\":\"guilherme@gmail.com\",\n\t\"telefone\":\"19981187565\",\n\t\"prontuario\":\"A1420504\",\n\t\"curso\":{\n\t\t\"id\": 1,\n         \"sigla\": \"ADS\",\n         \"nome\": \"Análise e Desenvolvimento de Sistemas\"\n\t}\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/ms-contratos/v1/alunos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ms-contratos",
+								"v1",
+								"alunos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Atividades",
+			"item": [
+				{
+					"name": "localhost:8081/ms-atividades/v1/atividades/0/10",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"Lenilson Teixeira Salvino\",\n\t\"email\":\"lenilsonts@gmail.com\",\n\t\"telefone\":\"19981187565\",\n\t\"prontuario\":\"A1420411\",\n\t\"curso\":{\n\t\t\"id\": 1,\n         \"sigla\": \"ADS\",\n         \"nome\": \"Análise e Desenvolvimento de Sistemas\"\n\t}\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8081/ms-atividades/v1/atividades/0/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"ms-atividades",
+								"v1",
+								"atividades",
+								"0",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8081/ms-atividades/v1/atividades",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"Java\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8081/ms-atividades/v1/atividades",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"ms-atividades",
+								"v1",
+								"atividades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8081/ms-atividades/v1/atividades/agrupadas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"Lenilson Teixeira Salvino\",\n\t\"email\":\"lenilsonts@gmail.com\",\n\t\"telefone\":\"19981187565\",\n\t\"prontuario\":\"A1420411\",\n\t\"curso\":{\n\t\t\"id\": 1,\n         \"sigla\": \"ADS\",\n         \"nome\": \"Análise e Desenvolvimento de Sistemas\"\n\t}\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8081/ms-atividades/v1/atividades/agrupadas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"ms-atividades",
+								"v1",
+								"atividades",
+								"agrupadas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Docentes",
+			"item": [
+				{
+					"name": "localhost:8086/ms-docentes/v1/docentes/0/10/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"Lenilson Teixeira Salvino\",\n\t\"email\":\"lenilsonts@gmail.com\",\n\t\"telefone\":\"19981187565\",\n\t\"prontuario\":\"A1420411\",\n\t\"curso\":{\n\t\t\"id\": 1,\n         \"sigla\": \"ADS\",\n         \"nome\": \"Análise e Desenvolvimento de Sistemas\"\n\t}\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8086/ms-docentes/v1/docentes/0/10/",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"ms-docentes",
+								"v1",
+								"docentes",
+								"0",
+								"10",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8086/ms-docentes/v1/docentes/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"Gustavo Bartz\",\n\t\"email\":\"gubartz@ifsp.com\"\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8086/ms-docentes/v1/docentes/",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"ms-docentes",
+								"v1",
+								"docentes",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Analytics",
+			"item": [
+				{
+					"name": "localhost:8082/ms-analytics/v1/metricas/contrato",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"Lenilson Teixeira Salvino\",\n\t\"email\":\"lenilsonts@gmail.com\",\n\t\"telefone\":\"19981187565\",\n\t\"prontuario\":\"A1420411\",\n\t\"curso\":{\n\t\t\"id\": 1,\n         \"sigla\": \"ADS\",\n         \"nome\": \"Análise e Desenvolvimento de Sistemas\"\n\t}\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8082/ms-analytics/v1/metricas/contrato",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"ms-analytics",
+								"v1",
+								"metricas",
+								"contrato"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contratos",
+			"item": [
+				{
+					"name": "localhost:8080/ms-contratos/v1/contratos/0/10",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"Lenilson Teixeira Salvino\",\n\t\"email\":\"lenilsonts@gmail.com\",\n\t\"telefone\":\"19981187565\",\n\t\"prontuario\":\"A1420411\",\n\t\"curso\":{\n\t\t\"id\": 1,\n         \"sigla\": \"ADS\",\n         \"nome\": \"Análise e Desenvolvimento de Sistemas\"\n\t}\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/ms-contratos/v1/contratos/0/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ms-contratos",
+								"v1",
+								"contratos",
+								"0",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/ms-contratos/v1/contratos/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"aluno\": {\n                    \"id\": 12,\n                    \"nome\": \"Lilian Teixeira\",\n                    \"email\": \"lilian@hotmail.com\",\n                    \"telefone\": \"(34)9668-2488\",\n                    \"prontuario\": \"A1420416\",\n                    \"curso\": {\n                        \"id\": 2,\n                        \"sigla\": \"TMS\",\n                        \"nome\": \"Técnico em Manutenção e Suporte em Informática\"\n                    }\n                },\n                \"empresa\": {\n                    \"id\": 2,\n                    \"codigo\": 1011,\n                    \"cnpj\": \"08.654.191/0002-06\",\n                    \"nome\": \"Movile Internet Movel S.A.\",\n                    \"email\": \"administrativo@movile.com\",\n                    \"telefone\": \"(19)3518-5500\"\n                },\n                \"horasSemanais\": 40,\n                \"salario\": 1000,\n                \"dataInicial\": \"2018-01-04\",\n                \"dataFinal\": \"2019-01-04\",\n                \"situacaoContrato\": \"ATIVO\",\n                \"statusTermino\": null\n            }"
+						},
+						"url": {
+							"raw": "localhost:8080/ms-contratos/v1/contratos/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ms-contratos",
+								"v1",
+								"contratos",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

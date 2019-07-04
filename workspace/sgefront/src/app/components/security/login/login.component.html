@@ -1,0 +1,46 @@
+<div class="col-md-4" style="margin-left:30%; margin-top: 10%" >
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">SGE - IFSP HTO | Login</h3>
+    </div>
+    <form class="form-horizontal" #form="ngForm" (ngSubmit)="login()" novalidate>
+      <div class="alert alert-error" role="alert" *ngIf="message">
+        <strong>Email ou Senha inválido!</strong>
+      </div>
+      <div class="box-body">
+        <div [ngClass]="getFormGroupClass(email.invalid,email.dirty)">
+          <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" 
+                   [(ngModel)]="user.email"
+                   name="email"
+                   class="form-control" 
+                   id="inputEmail" 
+                   #email="ngModel"
+                   placeholder="Email"
+                   email>
+            <span class="help-block" *ngIf="email.invalid  && email.dirty">Email inválido </span>
+          </div>
+        </div>
+
+        <div [ngClass]="getFormGroupClass(password.invalid,password.dirty)">
+          <label for="inputPassword" class="col-sm-2 control-label">Senha</label>
+          <div class="col-sm-10">
+            <input type="password" 
+                   [(ngModel)]="user.password"
+                   name="password" 
+                   class="form-control" 
+                   id="inputPassword" 
+                   placeholder="Senha"
+                   #password="ngModel" 
+                   required>
+            <span class="help-block" *ngIf="password.invalid && password.dirty">Senha é obrigatória</span>
+          </div>
+        </div>
+      </div>
+      <div class="box-footer">
+        <button type="submit" class="btn btn-default" (click)="cancelLogin()">Cancelar</button>
+        <button type="submit" class="btn btn-info pull-right"[disabled]="!form.valid">Entrar</button>
+      </div>
+    </form>
+  </div>

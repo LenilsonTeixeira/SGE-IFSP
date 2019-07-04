@@ -1,0 +1,186 @@
+<sge-content-header nome="Dashboard"></sge-content-header>
+
+<!-- Info boxes -->
+<div class="row">
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-aqua"><i class="ion ion-ios-people"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Alunos</span>
+        <span class="info-box-number">{{contratoMetric.totalAlunos}}</span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-black"><i class="ion ion-briefcase"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Empresas</span>
+        <span class="info-box-number">{{contratoMetric.totalEmpresas}}</span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+
+  <!-- fix for small devices only -->
+  <div class="clearfix visible-sm-block"></div>
+
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-red"><i class="ion ion-ios-bookmarks"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Cursos</span>
+        <span class="info-box-number">{{contratoMetric.totalCursos}}</span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-orange-active"><i class="ion ion-ios-paper-outline"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Contratos</span>
+        <span class="info-box-number">{{contratoMetric.contratosAtivos}}</span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->
+
+<!-- Info boxes -->
+<div class="row">
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-teal"><i class="ion ion-ios-paper"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Contratos Ativos</span>
+        <span class="info-box-number">{{contratoMetric.contratosAtivos}}</span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-green"><i class="ion ion-cash"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Média Salarial</span>
+        <span class="info-box-number">R$ {{contratoMetric.mediaSalarial}}</span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+
+  <!-- fix for small devices only -->
+  <div class="clearfix visible-sm-block"></div>
+
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-light-blue-active"><i class="ion ion-happy"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Evetivados</span>
+        <span class="info-box-number">{{contratoMetric.efetivados}}</span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-gray-active"><i class="ion ion-sad"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Não Efetivados</span>
+        <span class="info-box-number">{{contratoMetric.naoEfetivados}}</span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="box box-danger">
+      <div class="box-header with-border">
+        <h3 class="box-title">Contratos por Curso</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>  
+      </div>
+      <div class="box-body">
+        <canvas id="canvas" style="height:250px">{{ chart }}</canvas>
+      </div>
+    </div>
+    <!-- /.box -->
+  </div>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="box-header with-border">
+          <h3 class="box-title">Contratos por Curso</h3>
+  
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>  
+        </div>
+        <div class="box-body">
+          <canvas id="canvas2" style="height:250px">{{ chart }}</canvas>
+        </div>
+      </div>
+</div>
+
+<!-- TABLE: LATEST ORDERS -->
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Listagem de empresas que possuem contratos:</h3>
+
+    <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+  </div>
+
+  <div class="box-body">
+    <div class="table-responsive">
+      <table class="table table-hover table-custom table-bordered">
+          <tr class="table-header-custom">
+            <th class="col-md-11">Empresa</th>
+            <th class="col-md-1">Total</th>
+          </tr>
+          <tr *ngFor="let empresa of contratoMetric.empresas">
+            <td class="col-md-11">{{empresa.nome}}</td>
+            <td class="col-md-1"><span class="label label-danger">{{empresa.total}}</span></td>
+          </tr>
+      </table>
+    </div>
+  </div>
+
+  

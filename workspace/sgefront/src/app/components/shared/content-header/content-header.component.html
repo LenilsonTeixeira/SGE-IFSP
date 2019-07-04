@@ -1,0 +1,12 @@
+
+<section class="content-header content-header-custom">
+  <h1>
+    {{nome}}
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active"><strong>{{nome}}</strong></li>
+    <li class="active" *ngIf="param1">{{param1}}</li>
+    <li class="active" *ngIf="param2">{{param2}}</li>
+  </ol>
+</section>

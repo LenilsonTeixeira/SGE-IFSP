@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+.content-wrapper{
+    background-color: #ffffff
+}
+.box-content-custom{
+   box-shadow: 0px 1px 2px #000;
+   border-top-color:#009fff !important
+}
+
+/*Icons*/
+a.remove{
+    color: red;
+    cursor: pointer;
+}
+a.edit{
+    color:black;
+    cursor: pointer;
+    margin-right: 5px
+}
+
+/*Table*/
+table {
+    background-color:#02030421;
+}
+.table-header-custom{
+    background: #000000;
+    color: #ffffff
+}
+table tr:first-child:hover {
+    background-color: #000000;
+}
+
+/*Navbar*/
+.navbar-top-custom{
+    background-color: black !important
+}
+
+/*Header*/
+.logo{
+    background-color: #000000 !important
+}
+
+
+/*Box custom*/
+.box-content-custom{
+    min-height: 50px;
+}

@@ -1,0 +1,20 @@
+#Server
+server:
+  port: 8085
+  servlet:
+    context-path: /ms-documentos/v1
+
+# Database
+spring:
+  jpa:
+    database: postgresql
+    properties:
+      hibernate:
+        ddl-auto: create
+        temp:
+          use_jdbc_metadata_defaults: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/ms_documentos}
+    username: ${SPRING_DATASOURCE_USERNAME:sgeadmin}
+    password: ${SPRING_DATASOURCE_PASSWORD:sgeadmin}

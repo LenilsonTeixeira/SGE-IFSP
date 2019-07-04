@@ -1,0 +1,18 @@
+#Server
+server:
+  port: 8086
+  servlet:
+    context-path: /ms-docentes/v1
+
+# Database
+spring:
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql-docentes:3306/ms_docentes}
+    username: ${SPRING_DATASOURCE_USERNAME:sgeadmin}
+    password: ${SPRING_DATASOURCE_PASSWORD:sgeadmin}
+
+

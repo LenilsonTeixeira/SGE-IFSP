@@ -1,0 +1,193 @@
+<sge-content-header nome="Contrato"></sge-content-header>
+<div class="alert alert-success alert-dismissible" *ngIf="message">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <i class="icon fa fa-check"></i> <strong>{{ message.text }}</strong>
+</div>
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#cadastrarContratos">Cadastrar</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#listarContratos">Listar</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+<div id="listarContratos" class="tab-pane active">
+      <div class="content-table">
+        <div class="box-header box-header-custom">
+          <h3 class="box-title">{{totalElements}} Contratos Cadastrados</h3>
+          <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="name" [(ngModel)]="name" class="form-control pull-right" placeholder="Search">
+        
+              <div class="input-group-btn">
+                <button (click)="findByName(name)" type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="box-body table-responsive no-padding" *ngIf="contratos != null && contratos.length > 0">
+      <table class="table table-hover table-custom">
+      <tr class="table-header-custom">
+        <th>ID</th>
+        <th>Prontuário</th>
+        <th>Aluno</th>
+        <th>Empresa</th>
+        <th>Horas Semanais</th>
+        <th>Data Inicial</th>
+        <th>Data Final</th>
+        <th>Ação</th>
+      </tr>
+      <tr *ngFor="let contrato of contratos">
+        <td>{{contrato.id}}</td>
+        <td>{{contrato.aluno.prontuario}}</td>
+        <td>{{contrato.aluno.nome}}</td>
+        <td>{{contrato.empresa.nome}}</td>
+        <td>{{contrato.horasSemanais}}</td>
+        <td>{{contrato.dataInicial | date: 'dd/MM/yyyy'}}</td>
+        <td>{{contrato.dataFinal | date: 'dd/MM/yyyy'}}</td>
+        <td>
+            <span class="btn-align"><a (click)="delete(contrato.id)" class="remove"><i class="fa fa-trash"></i></a></span>
+        </td>
+      </tr>
+      </table>
+      </div>
+  </div>
+  <div class="box-footer clearfix" *ngIf="contratos != null && contratos.length > 0">
+    <ul class="pagination pagination-sm no-margin pull-right">
+        <li><a href="" (click)="setPreviousPage($event)">&laquo;</a></li>  
+        <li *ngFor="let p of pages; let i=index">
+            <a [ngClass]="{'pagination-focus':i==page}"  href="" (click)="setPage(i,$event)">{{i+1}}</a>
+        </li>
+        <li><a href="" (click)="setNextPage($event)">&raquo;</a></li>
+    </ul>
+  </div>
+</div>
+
+<div id="cadastrarContratos" class="tab-pane fade">
+<form [formGroup]="contratoForm" novalidate>
+<div class="box box-primary content box-content-custom">
+    <div class="box-header box-header-custom">
+      <h3 class="box-title">Informações do Aluno:</h3>
+    </div>
+    <div class="box-body">
+      <div class="row">
+            <div class="col-xs-2">
+                    <sge-input errorMessage="Prontuário é obrigatório" label="Prontuário">
+                        <input class="form-control" formControlName="prontuario" autocomplete="off" placeholder="Prontuário" maxlength="8" uppercase>
+                        <a class="align-search" (click)="fillStudent(contratoForm.get('prontuario').value)"><i class="fa fa-search fa-search-info"></i></a>
+                    </sge-input>
+            </div>
+          <div class="col-xs-10">
+              <sge-input label="Nome">
+                  <input class="form-control" formControlName="nome" autocomplete="off">
+              </sge-input>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-2">
+            <sge-input label="Telefone">
+                <input class="form-control" formControlName="telefone" autocomplete="off">
+            </sge-input>
+          </div>
+          <div class="col-xs-5">
+            <sge-input label="Email">
+                <input class="form-control" formControlName="email" autocomplete="off">
+            </sge-input>
+          </div>
+
+          <div class="col-xs-5">
+              <sge-input label="Curso">
+                  <input class="form-control" formControlName="curso" autocomplete="off">
+              </sge-input>
+            </div>
+      </div>
+    </div>
+</div>
+
+<div class="box box-primary content box-content-custom">
+    <div class="box-header box-header-custom">
+      <h3 class="box-title">Informações da Empresa:</h3>
+    </div>
+    <div class="box-body">
+      <div class="row">
+            <div class="col-xs-2">
+                    <sge-input errorMessage="Código é obrigatório" label="Código">
+                        <input class="form-control" formControlName="codigo" autocomplete="off" placeholder="Código">
+                        <a class="align-search" (click)="fillCompany(contratoForm.get('codigo').value)"><i class="fa fa-search fa-search-info"></i></a>
+                    </sge-input>
+            </div>
+            <div class="col-xs-2">
+                <sge-input label="CNPJ">
+                    <input class="form-control" formControlName="cnpj" autocomplete="off">
+                </sge-input>
+        </div>
+          <div class="col-xs-8">
+              <sge-input label="Nome">
+                  <input class="form-control" formControlName="empresa" autocomplete="off">
+              </sge-input>
+          </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="box box-primary content box-content-custom">
+    <div class="box-header box-header-custom">
+        <h3 class="box-title">Informações do Contrato:</h3>
+      </div>
+    <div class="row">
+        <div class="col-xs-2">
+                <sge-input errorMessage="O valor de horas semanais é obrigatório" label="Horas Semanais">
+                    <input class="form-control" formControlName="horasSemanais" autocomplete="off" placeholder="Horas Semanais">
+                </sge-input>
+        </div>
+      <div class="col-xs-2">
+          <sge-input errorMessage="O valor do salário é obrigatório" label="Salário">
+              <input class="form-control" formControlName="salario" autocomplete="off" placeholder="Salário">
+          </sge-input>
+      </div>
+
+      <div class="col-xs-2">
+          <sge-input errorMessage="A data inicial é obrigatória" label="Data Inicial">
+              <input class="form-control" formControlName="dataInicial" autocomplete="off" placeholder="Data Inicial">
+          </sge-input>
+      </div>
+
+      <div class="col-xs-2">
+          <sge-input errorMessage="A data do termino é obrigatória" label="Data Termino">
+              <input class="form-control" formControlName="dataFinal" autocomplete="off" placeholder="Data Termino">
+          </sge-input>
+      </div>
+      <div class="col-xs-4">
+            <div class="form-group">
+              <label>Situação</label>
+              <div class="radio">
+                <label>
+                    <input type="radio" value="ATIVO" formControlName="situacao" checked>
+                      <span>Ativo</span>
+                  </label>
+              </div>
+              <div class="radio">
+                  <label>
+                    <input type="radio" value="FINALIZADO" formControlName="situacao">
+                      <span>Finalizado</span>
+                  </label>
+                </div>
+            </div>
+          </div>
+  </div>
+</div>
+
+  <div class="row">
+      <div class="box-footer">
+          <button (click)="save(contratoForm.value)" class="btn btn-primary" [disabled]="contratoForm.invalid">Cadastrar</button>
+      </div>
+  </div>
+</form>
+</div>
+</div>
+

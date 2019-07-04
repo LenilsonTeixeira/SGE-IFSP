@@ -1,0 +1,14 @@
+# Server
+server:
+  port: 8083
+  servlet:
+    context-path: /ms-relatorios/v1
+
+
+# Datasource
+spring:
+  data:
+    mongodb:
+      database: ${SPRING_DATA_MS_RELATORIOS_MONGODB_DATABASE:ms_relatorios}
+      host: ${SPRING_DATA_MS_RELATORIOS_HOST:mongodb-ms-relatorios}
+      port: ${SPRING_DATA_MS_RELATORIOS_PORT:27017}

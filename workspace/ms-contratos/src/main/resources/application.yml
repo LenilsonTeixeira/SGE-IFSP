@@ -1,0 +1,22 @@
+#Server
+server:
+  port: 8080
+  servlet:
+    context-path: /ms-contratos/v1
+
+# Database
+spring:
+  jpa:
+    database: mysql
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql/ms_contratos}
+    username: ${SPRING_DATASOURCE_USERNAME:sgeadmin}
+    password: ${SPRING_DATASOURCE_PASSWORD:sgeadmin}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
+
+

@@ -1,0 +1,14 @@
+<div class="wrapper">
+<sge-header [hidden]="!showTemplate"></sge-header>
+<sge-menu-lateral [hidden]="!showTemplate"></sge-menu-lateral>
+<div [ngClass]="showContentWrapper()">
+    <section class="content-header">
+    </section>
+    <section class="content">
+        <router-outlet></router-outlet>
+    </section>
+</div>
+<sge-rodape [hidden]="!showTemplate"></sge-rodape>
+</div>
+
+

@@ -1,0 +1,104 @@
+
+<sge-content-header nome="Usuário"></sge-content-header>
+<div class="alert alert-success alert-dismissible" *ngIf="message">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <i class="icon fa fa-check"></i> <strong>{{ message.text }}</strong>
+</div>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#cadastrarUsuários">Cadastrar</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#listarUsuários">Listar</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div id="listarUsuários" class="tab-pane active">
+      <div class="content-table">
+        <div class="box-header box-header-custom">
+          <h3 class="box-title">{{totalElements}} Usuários Cadastrados</h3>
+          <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="name" [(ngModel)]="name" class="form-control pull-right" placeholder="Search">
+        
+              <div class="input-group-btn">
+                <button (click)="findByName(name)" type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+<!-- /.box-header -->
+
+      <div class="box-body table-responsive no-padding" *ngIf="usuarios != null && usuarios.length > 0">
+      <table class="table table-hover table-custom">
+      <tr class="table-header-custom">
+        <th>CNPJ</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Ação</th>
+      </tr>
+      <tr *ngFor="let empresa of empresas">
+        <td>{{empresa.cnpj}}</td>
+        <td>{{empresa.nome}}</td>
+        <td>{{empresa.email}}</td>
+        <td>{{empresa.telefone}}</td>
+        <td>
+            <span class="btn-align"><a (click)="edit(usuario)" class="edit"><i class="fa fa-edit"></i></a></span>
+            <span class="btn-align"><a (click)="delete(usuario.id)" class="remove"><i class="fa fa-trash"></i></a></span>
+        </td>
+      </tr>
+      </table>
+      </div>
+  </div>
+  <div class="box-footer clearfix" *ngIf="usuarios != null && usuarios.length > 0">
+    <ul class="pagination pagination-sm no-margin pull-right">
+        <li><a href="" (click)="setPreviousPage($event)">&laquo;</a></li>  
+        <li *ngFor="let p of pages; let i=index">
+            <a [ngClass]="{'pagination-focus':i==page}"  href="" (click)="setPage(i,$event)">{{i+1}}</a>
+        </li>
+        <li><a href="" (click)="setNextPage($event)">&raquo;</a></li>
+    </ul>
+  </div>
+</div>
+
+<div id="cadastrarUsuarios" class="tab-pane fade">
+<div class="box box-primary content box-content-custom">
+  <form [formGroup]="usuarioForm" novalidate>
+    <div class="box-body">
+      <div class="row">
+          <div class="col-xs-3">
+              <sge-input errorMessage="CNPJ Inválido" label="CNPJ">
+                  <input class="form-control" formControlName="cnpj" autocomplete="off" placeholder="CNPJ">
+              </sge-input>
+          </div>
+          <div class="col-xs-9">
+              <sge-input errorMessage="O nome deve conter no mínimo 3 caracteres" label="Nome">
+                  <input class="form-control" formControlName="nome" autocomplete="off" placeholder="Nome">
+              </sge-input>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-6">
+            <sge-input errorMessage="Email inválido" label="Email">
+                <input class="form-control" formControlName="email" autocomplete="off" placeholder="Email">
+            </sge-input>
+          </div>
+          <div class="col-xs-6">
+              <sge-input errorMessage="O telefone inválido" label="Telefone">
+                  <input class="form-control" formControlName="telefone" autocomplete="off" placeholder="Telefone">
+              </sge-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box-footer">
+                <button (click)="createOrUpdate(usuarioForm.value)" class="btn btn-primary" [disabled]="usuarioForm.invalid">Cadastrar</button>
+            </div>
+        </div>
+      </div>
+  </form>
+</div>
+</div>
+</div>

@@ -1,0 +1,7 @@
+.custom-nav-agrupadas{
+    box-shadow: 1px 4px 5px #666;
+}
+.custom-nav-li-agrupadas{
+    border-bottom: 1px solid #666 !important;
+    box-shadow: 0px 2px 3px #ddd;
+}

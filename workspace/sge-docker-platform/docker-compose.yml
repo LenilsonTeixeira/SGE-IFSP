@@ -1,0 +1,260 @@
+version: '3'
+services:
+  sge-lb:
+     networks:
+       - sge-network
+     image: dockercloud/haproxy
+     container_name: sge-lb
+     ports:
+       - '8280:80'
+     volumes:
+       - /var/run/docker.sock:/var/run/docker.sock
+
+  mongodb-ms-atividades:
+     image: mongo
+     networks:
+       - sge-network
+     ports:
+       - "27017:27017"
+     container_name: mongodb-ms-atividades
+
+  mongodb-ms-relatorios:
+     image: mongo
+     networks:
+       - sge-network
+     ports:
+       - "27027:27017"
+     container_name: mongodb-ms-relatorios
+
+  zookeeper:
+     container_name: zookeeper
+     networks:
+       - sge-network
+     image: confluentinc/cp-zookeeper:latest
+     environment:
+       ZOOKEEPER_CLIENT_PORT: 2181
+       ZOOKEEPER_TICK_TIME: 2000
+     ports:
+       - "2181:2181"
+  kafka:
+     container_name: kafka
+     networks:
+       - sge-network
+     image: confluentinc/cp-kafka:latest
+     depends_on:
+       - zookeeper
+     environment:
+       KAFKA_BROKER_ID: 1
+       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+       KAFKA_ADVERTISED_HOST_NAME: kafka
+     ports:
+       - "9092:9092"
+     
+  redis:
+     networks:
+       - sge-network
+     image: redis:5.0.3-alpine
+     container_name: redis
+     command: redis-server --requirepass redis
+     ports:
+       - "6379:6379"
+  mysql:
+     networks:
+       - sge-network
+     image: mysql:5.7
+     container_name: mysql
+     ports: 
+       - "3306:3306"    
+     environment:
+       MYSQL_ROOT_PASSWORD: sgeifsp
+       MYSQL_DATABASE: ms_contratos
+       MYSQL_USER: sgeadmin
+       MYSQL_PASSWORD: sgeadmin
+     volumes:
+       - ./mysql-data:/var/lib/mysql
+
+  mysql-docentes:
+    container_name: mysql-docentes
+    command: --default-authentication-plugin=mysql_native_password
+    environment:    
+    networks:
+      - sge-network 
+    image: mysql:5.7
+    ports: 
+      - "3316:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: sgeifsp
+      MYSQL_DATABASE: ms_docentes
+      MYSQL_USER: sgeadmin
+      MYSQL_PASSWORD: sgeadmin
+    volumes:
+      - ./mysql-data-docentes:/var/lib/mysql
+
+  postgresql:
+    container_name: postgres
+    image: postgres:9.4
+    environment:
+      POSTGRES_USER: sgeadmin
+      POSTGRES_PASSWORD: sgeadmin
+      POSTGRES_DB: ms_documentos
+    volumes:
+       - ./postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - sge-network
+    restart: unless-stopped
+
+  ms-contratos:
+     networks:
+       - sge-network
+     image: ifsp/ms-contratos
+     container_name: ms-contratos
+     ports:
+       - "8080:8080"
+       - "8000:8000"
+     environment:
+       SPRING_DATASOURCE_URL: "jdbc:mysql://mysql/ms_contratos"
+       SPRING_DATASOURCE_USERNAME: sgeadmin
+       SPRING_DATASOURCE_PASSWORD: sgeadmin
+       JAVA_OPTS: "-Djava.security.egd=file:/dev/./urandom -XX:+UseParallelGC -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 -Xmx256m"
+     depends_on:
+       - mysql
+
+  ms-documentos:
+     networks:
+       - sge-network
+     image: ifsp/ms-documentos
+     container_name: ms-documentos
+     ports:
+       - "8085:8085"
+       - "8005:8005"
+     environment:
+       SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/ms_documentos"
+       SPRING_DATASOURCE_USERNAME: sgeadmin
+       SPRING_DATASOURCE_PASSWORD: sgeadmin
+       JAVA_OPTS: "-Djava.security.egd=file:/dev/./urandom -XX:+UseParallelGC -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8005 -Xmx256m"
+     depends_on:
+       - postgresql
+
+  ms-docentes:
+     networks:
+       - sge-network
+     image: ifsp/ms-docentes
+     container_name: ms-docentes
+     ports:
+       - "8086:8086"
+       - "8006:8006"
+     environment:
+       SPRING_DATASOURCE_URL: "jdbc:mysql://mysql-docentes:3306/ms_docentes"
+       SPRING_DATASOURCE_USERNAME: sgeadmin
+       SPRING_DATASOURCE_PASSWORD: sgeadmin
+       JAVA_OPTS: "-Djava.security.egd=file:/dev/./urandom -XX:+UseParallelGC -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8006 -Xmx256m"
+     depends_on:
+       - mysql-docentes
+   
+  ms-atividades:
+     networks:
+       - sge-network
+     image: ifsp/ms-atividades
+     container_name: ms-atividades
+     ports:
+       - "8081:8081"
+       - "8001:8001"
+     environment:
+       SPRING_DATA_MONGODB_MS_ATIVIDADES_DATABASE: ms_atividades
+       SPRING_DATA_MS_ATIVIDADES_HOST: mongodb-ms-atividades
+       SPRING_DATA_MS_ATIVIDADES_PORT: 27017 
+       JAVA_OPTS: "-Djava.security.egd=file:/dev/./urandom -XX:+UseParallelGC -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8001 -Xmx256m"
+     depends_on:
+       - mongodb-ms-atividades
+
+  ms-analytics:
+     networks:
+       - sge-network
+     image: ifsp/ms-analytics
+     container_name: ms-analytics
+     ports:
+       - "8082:8082"
+       - "8002:8002"
+     environment:
+       REDIS_CONNECTIONTYPE: ${LETTUCE_CONNECTIONTYPE}
+       REDIS_PASSWORD: ${LETTUCE_PASSWORD_ENCRYPT}
+       REDIS_ADDRESS: ${REDIS_HOST_ADDRESS}
+       REDIS_MASTERSLAVEREADFROM: ${REDIS_MASTERSLAVEREADFROM}
+       JAVA_OPTS: "-Djava.security.egd=file:/dev/./urandom -XX:+UseParallelGC -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8002 -Xmx256m"
+     depends_on:
+       - redis
+
+  ms-relatorios:
+     networks:
+       - sge-network
+     image: ifsp/ms-relatorios
+     container_name: ms-relatorios
+     ports:
+       - "8083:8083"
+       - "8003:8003"
+     environment:
+       SPRING_DATA_MS_RELATORIOS_MONGODB_DATABASE: ms_relatorios
+       SPRING_DATA_MS_RELATORIOS_HOST: mongodb-ms-relatorios
+       SPRING_DATA_MS_RELATORIOS_PORT: 27017 
+       JAVA_OPTS: "-Djava.security.egd=file:/dev/./urandom -XX:+UseParallelGC -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8003 -Xmx256m"
+     depends_on:
+       - mongodb-ms-relatorios 
+
+  ms-notificador:
+     networks:
+       - sge-network
+     image: ifsp/ms-notificador
+     container_name: ms-notificador
+     ports:
+       - "8084:8084"
+       - "8004:8004"
+     environment:
+       JAVA_OPTS: "-Djava.security.egd=file:/dev/./urandom -XX:+UseParallelGC -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8004 -Xmx256m"
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+    - 3000:3000
+    volumes:
+    - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=springmvc
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    depends_on:
+      - prometheus
+    networks:
+      - sge-network
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+    - 9090:9090
+    volumes:
+    - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    - prometheus_data:/prometheus
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    networks:
+      - sge-network
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "lenilsonts@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "15432:80"
+    depends_on:
+      - postgresql
+    networks:
+      - sge-network
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+networks: 
+    sge-network:
+        driver: bridge
