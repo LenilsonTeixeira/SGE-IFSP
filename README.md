@@ -27,13 +27,18 @@ Esses passos são necessários para que o Docker não precise ser executado como
  
  7 - Acessar o front-end através da URL: http://localhost:4200/ (Obs: Para visualizar as informações no dashboard deve ser gerado pelo menos um contrato)
 
---------------------------------------------------------------------------------------------------------------------
-  Importante: O microsserviço MS-DOCENTES cria automaticamente o banco porém não cria automaticamente a tabela no banco de dados POSTGRES. Caso deseje ativar esse microsserviço siga os seguintes procedimentos: 
- - copiar o script de criação de tabela do MS-DOCUMENTOS que está localizado na pasta de **scripts** e em seguida acessar a URL: http://localhost:15432/browser/ 
+8 - O microsserviço MS-DOCUMENTOS cria automaticamente o banco porém não cria automaticamente a tabela no banco de dados POSTGRES, portanto deve seguir o seguinte procedimento:
+Caso prefira se conectar no postgresql via terminal execute o comando: **docker exec -it postgres bash** 
+ - **psql -d ms_documentos -U  sgeadmin -W** inserindo a senha: **sgeadmin**
+ -Executar o script para criar a tabela documento:
+ CREATE TABLE documento(id serial PRIMARY KEY, sigla VARCHAR(4) UNIQUE NOT NULL, nome VARCHAR(100) UNIQUE NOT NULL, copias integer)
+ 
+ ------------------------------------------------------------------------------------------------------------------
+ - Caso deseje acessar o Postgres através do PGAdmin acesse o link: http://localhost:15432/login
  Login: **user@domain.com**
  Senha: **admin**
 
- - Após criar a tabela executar o seguinte comando **docker restart ms-docentes**
+ - Após criar a tabela **documento**  executar o  comando **docker restart ms-docentes** em uma nova aba
 
  **O passo acima não interfere na execução do sistema, somente nas funcionalidades de CRUD do MS-Docentes**
 
