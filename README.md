@@ -22,6 +22,8 @@ Esses passos são necessários para que o Docker não precise ser executado como
  - Executar o comando **docker ps** para se certificar se os containers estão rodando
 
  6 - Navegar até o diretório **sgefront** e executar o seguinte comando: **ng serve** (Comando responsável por compilar e subir o front-end)
+ 
+ 7 - Acessar o front-end através da URL: http://localhost:4200/ (Obs: Para visualizar as informações no dashboard deve ser gerado pelo menos um contrato)
 
 --------------------------------------------------------------------------------------------------------------------
   Importante: O microsserviço MS-DOCENTES cria automaticamente o banco porém não cria automaticamente a tabela no banco de dados POSTGRES. Caso deseje ativar esse microsserviço siga os seguintes procedimentos: 
