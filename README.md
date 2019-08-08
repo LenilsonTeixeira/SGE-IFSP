@@ -10,6 +10,7 @@ Obs.: Certifique-se de executar os passos de pós instalação:
 Esses passos são necessários para que o Docker não precise ser executado como root - sem precisar do “sudo” na frente dos comandos.
 
   - Instalar o Node e o NPM: https://nodejs.org/en/download/current/ (Baixar a versão mais recente) 
+  - Instalar o Maven: https://maven.apache.org/
 
  2 - Realizar o clone do repositório: https://github.com/LenilsonTeixeira/SGE-IFSP
 
