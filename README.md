@@ -1,5 +1,8 @@
 # SGE-IFSP
 Sistema Gerenciador de Estágios do IFSP Hortolândia desenvolvido na arquitetura de microsserviços
+
+https://hto.ifsp.edu.br/portal/images/thumbnails/images/IFSP/Cursos/Coord_ADS/Arquivos/TCCs/2019/TCC_Lenilson_Teixeira_Salvino.pdf 
+
 # Tutorial para rodar o projeto SGE
 
  1 - Instalar o Docker : https://docs.docker.com/install/linux/docker-ce/ubuntu/
